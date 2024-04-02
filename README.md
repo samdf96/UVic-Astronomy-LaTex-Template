@@ -26,7 +26,7 @@ Clone (or download) this repository, and for Overleaf users, upload all files to
 - `AstroCitations.bib` - example `.bib` file used
 - `astronomy_packages.tex` - contains astronomy-related packages the user can comment-in (or comment-out)
 
-`AstroExample.tex` is the entry point for compilation. This example file provides useful documentation on compiling a thesis style that adheres to the UVic guidelines for thesis formatting, however, adds in useful examples on citation managament, citation styles (that mimic many typical publishers), complex table structures, and typical astronomy symbols. 
+`AstroExample.tex` is the entry point for compilation. This example file provides useful documentation on compiling a thesis style that adheres to the UVic guidelines for thesis formatting, however, adds in useful examples on citation managament, citation styles (that mimic many typical publishers), complex table structures, and typical astronomy symbols.
 
 Most of the package implementation that goes above the basic structure implemented by both the `frontmatter/` (for user information) and `macros/` (for style), will be contained within `astronomy_packages.tex`, with documentation found within the `AstroExample.tex`.
 
