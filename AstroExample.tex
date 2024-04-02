@@ -1,0 +1,93 @@
+%*********************************************************************************************************
+% Modified Project from PAGSA's UVic Thesis Template: https://github.com/PAGSA/UVic-latex-thesis-template
+% Development Credit for PAGSA's UVic Thesis Template: Caleb Miller
+% 
+% Designed by Samuel Fielder
+%
+% Notes:
+% Developed in preparation for the March 2024 Software Plumbing Workshop
+% See README.md for more information regarding the structure for this astronomy-specific project
+%*********************************************************************************************************
+
+%*********************************************************************************************************
+% PACKAGES AND DEFINTIONS
+%*********************************************************************************************************
+\documentclass[12pt,oneside]{book}
+\input{macros/style} % sets packages to use for thesis style implementation
+\input{astronomy_packages} % sets other packages for users to use
+
+% inclusion of table-related packages
+\usepackage{xltabular}
+\usepackage{threeparttablex}
+\usepackage{booktabs, caption}
+\usepackage{multirow}
+\usepackage{pdflscape}
+
+%*********************************************************************************************************
+% PACKAGES ONLY USED FOR EXAMPLE PDF - CODE LISTINGS
+% if code listings aren't required, delete this section
+%*********************************************************************************************************
+\usepackage{listings, xcolor}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+
+% Define a custom style
+\lstdefinestyle{CustomStyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    keepspaces=true,                 
+    numbers=left,       
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+\lstset{style=CustomStyle}
+%*********************************************************************************************************
+
+
+% can optionally set a graphics path
+\graphicspath{{content/figures/}}
+
+% the following line stops footnotes from splitting onto two pages
+\interfootnotelinepenalty=10000
+
+%*********************************************************************************************************
+% INCLUDE ONLY
+%*********************************************************************************************************
+% allows compiling of individual chapters for faster compile times (useful for speedy format checking)
+
+% \includeonly{chapters/7/coolstuff}
+
+%*********************************************************************************************************
+% DOCUMENT
+%*********************************************************************************************************
+\begin{document}
+
+    % choose one of the following lines, not both
+    \input{macros/masterssetup} % sets up the document for a Masters thesis
+    % \input{macros/phdsetup} % sets up the document for a PhD thesis
+
+    \input{frontmatter/setup} % inserts the frontmatter 
+
+    \newpage
+
+    % include the content of the thesis
+    \include{content/chapter1_intro}
+    \include{content/chapter2_tables}
+    \include{content/chapter3_citations}
+
+    % see compiled PDF for information regarding citation styles
+    \TOCadd{Bibliography} % add citations to TOC
+    \bibliography{AstroCitations.bib}{}
+    \bibliographystyle{aasjournal} % links to aasjournal.bst file
+
+    % uncomment the following lines to include an appendix
+    % \appendix
+    % \include{content/appendix}
+
+\end{document}

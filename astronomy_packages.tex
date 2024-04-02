@@ -1,0 +1,51 @@
+% packages
+
+% dvipsnames, svgnames - were included in the documentclass call
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+% HEADINGS
+%*********************************************************************************************************
+% This changes the headings go that they are prettier, this can be commented out for traditional headings.
+\usepackage{sectsty}
+\allsectionsfont{\bfseries}% set all the section font to bfseries
+\chapterfont{\centering\Large} % set the sizes of chapters, sections ...
+\sectionfont{\normalsize}
+\subsectionfont{\normalsize}
+
+\usepackage{xspace}
+
+\usepackage{verbatim}
+
+\usepackage{graphics}
+\usepackage{graphicx}
+
+\usepackage{layout}
+\usepackage{changebar}
+\usepackage{pdfpages}
+\usepackage{geometry}
+\usepackage[export]{adjustbox}[2011/08/13]
+\usepackage{notoccite}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{varioref}
+
+\usepackage{url}
+
+\usepackage{natbib}
+\usepackage{aastex_hack}
+
+% HYPERLINKS (must be last to work properly, caution with other packages)
+%*************************************************************************************************************
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	linkcolor=blue,
+	linktocpage=true,
+	citecolor=blue,
+	urlcolor=olive
+}

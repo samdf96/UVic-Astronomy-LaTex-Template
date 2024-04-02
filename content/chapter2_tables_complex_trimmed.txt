@@ -1,0 +1,36 @@
+\begin{landscape}
+    \begin{ThreePartTable}
+        \begin{TableNotes}[flushleft, para]
+            \footnotesize
+            $^{\text{a}}$ Properties of the Gaussian fit to the ALMA emission: peak flux, integrated flux, major and minor axes of the FWHM, and position angle of the FWHM. \\
+            $^{\text{b}}$ Properties of the deconvolved Gaussian fit: major and minor axes of the FWHM, and position angle of the FWHM. Unresolved sources are indicated by values of -1.
+        \end{TableNotes}
+        \centering
+        \scriptsize
+        \begin{xltabular}{\linewidth}{Xccccccccccccccc}
+            \caption{Observed Properties of ALMA Detections
+            \label{tab:observed-properties}}\\
+            \toprule
+            Scr &  R.A.  &  Decl. & Pk$^{\text{a}}$ & Pk$_{\text{err}}$$^{\text{a}}$ & Tot$^{\text{a}}$ & Tot$_{\text{err}}$$^{\text{a}}$ & FWHM$_{\text{a}}$$^{\text{a}}$ & FWHM$_{\text{b}}$$^{\text{a}}$ &  P.A.$^{\text{a}}$ & \multicolumn{2}{c}{FWHM$_{\text{a,d}}$$^{\text{b}}$ (arcsec)} & \multicolumn{2}{c}{FWHM$_{\text{b,d}}$$^{\text{b}}$ (arcsec)} & \multicolumn{2}{c}{P.A.$_{\text{d}}$$^{\text{b}}$ (deg)}\\
+            & (J2000) & (J2000) & \multicolumn{2}{c}{($\text{mJy}~\text{beam}^{-1}$)} & \multicolumn{2}{c}{($\text{mJy}$)} & \multicolumn{2}{c}{(arcsec)} & (deg) & fit & err & fit & err & fit & err \\
+            \midrule
+            \endfirsthead
+            
+            \caption[]{(continued from previous page)} \\
+            \toprule
+            *** (SAME AS ABOVE) ***
+            \midrule
+            \endhead
+            
+            \bottomrule
+            \multicolumn{16}{r}{\footnotesize to be continued on the next page}
+            \endfoot
+            
+            \bottomrule
+            \insertTableNotes
+            \endlastfoot
+            
+            *** (DATA GOES HERE) ***
+        \end{xltabular}
+    \end{ThreePartTable}
+\end{landscape}
