@@ -4,7 +4,7 @@ This thesis template has been created for astronomy students at the University o
 
 The basis of this astronomy template is based on the PAGSA UVic Latex Thesis Template (<https://github.com/PAGSA/UVic-latex-thesis-template>), which serves as a great base for both physics and astronomy students.
 
-The project here has been modified to adhere to current LaTex standards, simplifying the overall structure, while serving **astronomy graduate students**. Many physics-related packages and implementations have been completely trimmed out, in order to keep the overall scope of the project highly specific and lightweight. Included with this astronomy-specific template is an example PDF (compiled from the entry point, see below) giving information on each included package, along with examples on best-practices.
+The project here has been modified to adhere to current LaTex standards, simplifying the overall structure, while serving primarily **astronomy graduate students**. Many physics-related packages and implementations have been completely trimmed out, in order to keep the overall scope of the project highly specific and lightweight. Included with this astronomy-specific template is an example PDF (compiled from the entry point, see below) giving information on each included package, along with examples of best practices.
 
 Many thanks to Caleb Miller who compiled the aforementioned UVic Latex Thesis Template, which served as a great base for the changes found in this repository.
 
@@ -18,15 +18,15 @@ Clone (or download) this repository, and for Overleaf users, upload all files to
 
 - `frontmatter/` - contains the instructions for building the frontmatter of the compiled thesis/dissertation
 - `macros/` - contains instructions for the thesis/dissertation style
-- `content/` - optional directory structure to keep all content related information
+- `content/` - optional directory structure to keep all content-related information
 
 ### Main Files
 
 - `AstroExample.tex` - the base tex file
 - `AstroCitations.bib` - example `.bib` file used
-- `astronomy_packages.tex` - contains astronomy-related packages the user can comment-in (or comment-out)
+- `astronomy_packages.tex` - contains astronomy-related packages the user can comment in (or comment out)
 
-`AstroExample.tex` is the entry point for compilation. This example file provides useful documentation on compiling a thesis style that adheres to the UVic guidelines for thesis formatting, however, adds in useful examples on citation managament, citation styles (that mimic many typical publishers), complex table structures, and typical astronomy symbols.
+`AstroExample.tex` is the entry point for compilation. This example file provides useful documentation on compiling a thesis style that adheres to the UVic guidelines for thesis formatting, however, adds useful examples on citation management, citation styles (that mimic many typical publishers), complex table structures, and typical astronomy symbols.
 
 Most of the package implementation that goes above the basic structure implemented by both the `frontmatter/` (for user information) and `macros/` (for style), will be contained within `astronomy_packages.tex`, with documentation found within the `AstroExample.tex`.
 
@@ -38,15 +38,15 @@ The following should be changed within the `frontmatter/` directory:
 
 - Within `setup.tex`, set your `name`, `thesis title`, `degrees held` and `committee members`
 - Change the copyright year under `titlepage.tex` to the current year
-- Input any acknowledgements under `acknowledgements.tex`
+- Input any acknowledgments under `acknowledgements.tex`
 - Input any dedications under `dedications.tex`
 - Write the abstract of your thesis/dissertation in `abstract.tex`
 
-Make use of the `ThesisMain.pdf` to see how each frontmatter section is compiled into the final PDF version of the thesis/dissertation.
+Make use of the `AstroExample.pdf` to see how each frontmatter section is compiled into the final PDF version of the thesis/dissertation.
 
 ## Packages (to optionally include)
 
-This thesis/dissertation template outlines many packages users may want to use when writing; it is up to the users to choose which to include in their setup. This can be done by inspecting `astronomy_packages.tex` and commenting-in (or -out) the packages users would like (or wish to exclude for any reason). Users can add any additional packages into this file directly (and they will be loaded by `AstroExample.tex`), or add them into `AstroExample.tex` directly. **Note that by convention, some packages should be loaded after others. See `astronomy_packages.tex` for information regarding this**.
+This thesis/dissertation template outlines many packages users may want to use when writing; it is up to the users to choose which to include in their setup. This can be done by inspecting `astronomy_packages.tex` and commenting in (or out) the packages users would like (or wish to exclude for any reason). Users can add any additional packages into this file directly (and they will be loaded by `AstroExample.tex`), or add them into `AstroExample.tex` directly. **Note that by convention, some packages should be loaded after others. See `astronomy_packages.tex` for information regarding this**.
 
 ### Packages Included in TeXLive
 
@@ -69,9 +69,9 @@ This thesis/dissertation template outlines many packages users may want to use w
 - `verbatim`: <https://ctan.org/pkg/verbatim>
   - provides verbatim environments for the display of code-style content
 - `graphics`: <https://ctan.org/pkg/graphics>
-  - accomodates the inclusion of graphics in documents
+  - accommodates the inclusion of graphics in documents
 - `graphicx`: <https://ctan.org/pkg/graphicx>
-  - extension of the graphics package
+  - an extension of the graphics package
 - `layout`: <https://ctan.org/pkg/layout>
   - shows a summary of the layout of the current document, helpful for de-bugging formatting
 - `changebar`: <https://ctan.org/pkg/changebar>
@@ -99,7 +99,7 @@ This thesis/dissertation template outlines many packages users may want to use w
 
 ### Packages (and supplementary files) not Included in TeXLive
 
-Background: This LaTeX thesis template was essentially made by converting my ApJ submission into the required style given by the University of Victoria (by way of modifying the template made by Caleb Miller). Through this process, I attempted to carry-over many useful properties of the `aastex631` style that did not clash with the University's format. These were primarily the citation style and the custom `deluxetable` environments. I was unable to get 100% compatibility with the `deluxetable` environment, and as such needed to find a replacement, however, the citation style was able to be formatted to work with the thesis template. The two custom files are listed below and found in this repository:
+Background: This LaTeX thesis template was essentially made by converting my ApJ submission into the required style given by the University of Victoria (by way of modifying the template made by Caleb Miller). Through this process, I attempted to carry over many useful properties of the `aastex631` style that did not clash with the University's format. These were primarily the citation style and the custom `deluxetable` environments. I was unable to get 100% compatibility with the `deluxetable` environment, and as such needed to find a replacement, however, the citation style was able to be formatted to work with the thesis template. The two custom files are listed below and found in this repository:
 
 - `aasjournal.bst`: bibliographic style file for the natbib package
 - `aastex_hack.sty`: extra journal shorthands
