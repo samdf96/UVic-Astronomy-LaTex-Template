@@ -1,19 +1,19 @@
-\startchapter{Tables}
-\label{sec: tables}
+\chapter{Tables}
+\label{ch:tables}
 
 Similarly with other topics in \LaTeX, there are a multitude of different ways to achieve the same output. As with most basic implementations, Overleaf has fantastic resources. The following link is a great place to start for basic and slightly more advanced table implementations: \url{https://www.overleaf.com/learn/latex/Tables}.
 
 \section{Comprehensive Tables}
-\label{sec: tables-comprehensive}
+\label{sec:tables-comprehensive}
 
-This section will cover what I believe is a fantastic way to implement basic and complex tables. This comes from my experience in working with the \texttt{deluxetable} environment in AASTex, and the related \texttt{aastex} package. Through the process of converting my paper content into my thesis template, I found that the \texttt{deluxetable} environment was not compatible with the University's thesis template, at least not to the extend that I needed it to be (the only change I could not make was the automated setting for the fontsize of the table).
+This section will cover what I believe is a fantastic way to implement basic and complex tables, using standard \LaTeX\ packages. If you are used to the \texttt{deluxetable} environment from AASTeX, note that this template does not support it; the examples below show how to build the same kinds of tables (table notes, tables that continue over several pages, landscape tables) with standard packages.
 
-Because of this, I searched for a more basic implementation in some other packages and workflows. While the generic \texttt{tabular} environment is a great place to start, it does not account for the complex table implementations that I needed (tables with merged cells, tables that spilled over pages, landscape tables, etc.).
+While the generic \texttt{tabular} environment is a great place to start, it does not account for the complex table implementations that I needed (tables with merged cells, tables that spilled over pages, landscape tables, etc.).
 
 The following is a list of the packages that allowed me the most flexibility in creating tables that I needed for my thesis. These are in order of the most basic to the most complex:
 
 \subsection{Basis Packages}
-\label{sec: tables-basis-packages}
+\label{sec:tables-basis-packages}
 
 These are what I describe as basis packages, which add in the ability to create tables that are more complex than the basic \texttt{tabular} environment, but are not as complex as the packages that will be discussed later in this section, which essentially have the abilities to \emph{merge} these environments together under one umbrella environment.
 
@@ -29,7 +29,7 @@ These are what I describe as basis packages, which add in the ability to create 
 \end{itemize}
 
 \subsection{Extension Packages}
-\label{sec: tables-extension-packages}
+\label{sec:tables-extension-packages}
 
 As mentioned above, these packages are extensions of the basic packages, and allow for more complex table implementations. These are what made all the different packages work together in a seamless way.
 
@@ -39,36 +39,36 @@ As mentioned above, these packages are extensions of the basic packages, and all
 \end{itemize}
 
 \section{Example Tables}
-\label{sec: tables-example}
+\label{sec:tables-example}
 
 Here is a regular \texttt{tabular} environment, modified by the \texttt{booktabs} package. This is a great way to start creating tables, as it is simple and easy to understand. The \texttt{booktabs} package provides some additional commands to enhance the quality of tables such as the \texttt{toprule}, \texttt{midrule}, and \texttt{bottomrule} commands.
 
 The following is the templated code for the table:
 
-\lstinputlisting[language=TeX]{content/chapter2_tables_simpletable.tex}
+\lstinputlisting[language=TeX]{content/examples/table_simpletable.tex}
 
 The compiled from the above templated code is the following:
 
-\input{content/chapter2_tables_simpletable.tex}
+\input{content/examples/table_simpletable.tex}
 
 Extending this to use a \texttt{threeparttable} environment, including a caption and notes, would be the following:
 
-\lstinputlisting[language=TeX]{content/chapter2_tables_threeparttable.tex}
+\lstinputlisting[language=TeX]{content/examples/table_threeparttable.tex}
 
 The compiled from the above templated code is the following:
 
-\input{content/chapter2_tables_threeparttable.tex}
+\input{content/examples/table_threeparttable.tex}
 
 Expanding now to use the \texttt{tabularx} environment for automatic re-sizing of the columns. For reference, in this example, all columns but the first use the \texttt{X} designation. The following code would be used:
 
-\lstinputlisting[language=TeX]{content/chapter2_tables_tabularx.tex}
+\lstinputlisting[language=TeX]{content/examples/table_tabularx.tex}
 
 The compiled from the above templated code is the following:
 
-\input{content/chapter2_tables_tabularx.tex}
+\input{content/examples/table_tabularx.tex}
 
 The last example will be a combination of all the above packages, including the \texttt{longtable} package to allow the table to continue onto the next page, the \texttt{multirow} package to merge cells in the row direction, and the \texttt{pdflscape} package to create a landscape table. The following code will be used (data and header information have been selectively trimmed for readability):
 
-\lstinputlisting[language=TeX]{content/chapter2_tables_complex_trimmed.txt}
+\lstinputlisting[language=TeX]{content/examples/table_complex_trimmed.txt}
 
-\input{content/chapter2_tables_complex.tex}
+\input{content/examples/table_complex.tex}

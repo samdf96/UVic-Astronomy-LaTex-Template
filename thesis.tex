@@ -1,0 +1,113 @@
+% ===================================================================
+% UVic Physics & Astronomy Thesis Template
+% -------------------------------------------------------------------
+% This is the only .tex file you need to edit at the top level.
+%   1. Choose your class options below.
+%   2. Fill in your thesis details (title, name, committee, ...).
+%   3. Edit the files in frontmatter/ (abstract, acknowledgements,
+%      dedication).
+%   4. Replace the example chapters in content/ with your own.
+%
+% The compiled example PDF (thesis.pdf) explains every feature used
+% here. See uvicphysastro.cls for full option documentation.
+% ===================================================================
+
+\documentclass[
+  degree=masters,           % masters | phd
+  bibliography=natbib,      % none | natbib | biblatex
+  % bibstyle=authoryear,    % biblatex style (bibliography=biblatex only)
+  % spacing=double,         % onehalf (default) | double
+  % floatfraction=0.5,      % lower (e.g. 0.01) = more float-only pages
+  % draft=true,             % line numbers, label keys, todo notes, timestamp
+  % listoftables=false,     % only if your thesis contains no tables
+  % listoffigures=false,    % only if your thesis contains no figures
+  % headings=centered,      % left (default) | centered: preliminary-page headings
+]{uvicphysastro}
+
+% -------------------------------------------------------------------
+% Thesis details
+% -------------------------------------------------------------------
+\thesistitle{An Example Thesis Made With \LaTeX\ for Astronomy Students}
+\thesisauthor{A Hopeful Graduate}   % your legal name, exactly as UVic has it
+\thesisyear{2026}                   % year of completion
+% Previously awarded credentials (optional; delete to show none)
+\thesisdegrees{%
+  B.Sc., University of WhoKnowsWhere, 2053\\
+  M.Sc., University of AnotherOne, 2054%
+}
+% Supervisory committee: \panelist{Name}{Role}{Department}
+% Do not list your external examiner or the exam chair.
+\thesiscommittee{%
+  \panelist{Dr. R.\ Supervisor Main}{Supervisor}{Department of Physics and Astronomy}%
+  \panelist{Dr. M.\ Member One}{Departmental Member}{Department of Physics and Astronomy}%
+  \panelist{Dr. Member Two}{Departmental Member}{Department of Physics and Astronomy}%
+  \panelist{Dr. Outside Member}{Outside Member}{Department of Chemistry}%
+}
+% Optional: replace the department line (joint programs only)
+% \thesisdepartment{Departments of Physics and Astronomy and Computer Science}
+% Optional: replace "All rights reserved..." with a licence statement
+% \thesiscopyright{This work is licensed under a Creative Commons
+%   Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)}
+
+% -------------------------------------------------------------------
+% Your own packages and settings
+% -------------------------------------------------------------------
+% Table packages demonstrated in the Tables chapter
+\usepackage{xltabular}
+\usepackage{threeparttablex}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{pdflscape}
+
+\graphicspath{{content/figures/}}   % where \includegraphics looks for images
+\interfootnotelinepenalty=10000     % stop footnotes splitting across pages
+
+% -------------------------------------------------------------------
+% EXAMPLE-ONLY SETTINGS: used to display code in the example PDF.
+% Delete this block when you start your own thesis.
+% -------------------------------------------------------------------
+\usepackage{listings}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\lstdefinestyle{CustomStyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+}
+\lstset{style=CustomStyle}
+% \cmd{name} typesets a command name, e.g. \cmd{arcsec} -> \arcsec
+\newcommand{\cmd}[1]{\texttt{\textbackslash #1}}
+% \file{path} typesets a file or folder name that can break across lines
+\DeclareUrlCommand\file{\urlstyle{tt}}
+% -------------------------------------------------------------------
+
+% Compile only selected chapters while writing (much faster):
+% \includeonly{content/chapter4_tables}
+
+\begin{document}
+
+\makefrontmatter
+
+\include{content/chapter1_getting_started}
+\include{content/chapter2_frontmatter}
+\include{content/chapter3_bibliographies}
+\include{content/chapter4_tables}
+\include{content/chapter5_astronomy}
+
+\bibliographystyle{extras/aasjournal}
+\bibliography{references}
+
+% Appendices (optional): uncomment, and add one file per appendix
+% \appendix
+% \include{content/appendixA}
+
+\end{document}

@@ -1,0 +1,114 @@
+\chapter{The Preliminary Pages}
+\label{ch:frontmatter}
+
+The preliminary pages (or front matter) are everything before Chapter~1. UVic is strict about their content, order and numbering, so the class generates most of them for you from the details you set in \file{thesis.tex}. The single command \cmd{makefrontmatter}, at the start of the document, produces all of them in the required order (Table~\ref{tab:frontmatter-order}).
+
+\begin{table}[htbp]
+    \centering
+    \caption{The preliminary pages, in the order UVic requires.}
+    \label{tab:frontmatter-order}
+    \begin{tabularx}{\linewidth}{@{}l l X@{}}
+        \toprule
+        Page & Required? & Where it comes from \\
+        \midrule
+        Title page & Yes & Generated from your thesis details \\
+        Supervisory Committee & Yes & Generated from your thesis details \\
+        Abstract & Yes & \file{frontmatter/abstract.tex} \\
+        Table of Contents & Yes & Generated \\
+        List of Tables & If you have tables & Generated; \texttt{listoftables=false} omits it \\
+        List of Figures & If you have figures & Generated; \texttt{listoffigures=false} omits it \\
+        Acknowledgements & No & \file{frontmatter/acknowledgements.tex}; delete the file to omit it \\
+        Dedication & No & \file{frontmatter/dedications.tex}; delete the file to omit it \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Page Numbering}
+\label{sec:page-numbering}
+
+Page numbering is handled automatically and follows UVic's rules. The preliminary pages are numbered in lower-case Roman numerals. The title page counts as page~i but shows no number, so the supervisory committee page is page~ii. The body of the thesis restarts at Arabic page~1; the number is hidden on that first page (UVic allows either), and shown on every page after it. Every chapter starts on a new page, and no blank pages are inserted.
+
+\section{Title Page}
+\label{sec:title-page}
+
+The title page is built entirely from your thesis details:
+\begin{lstlisting}[language=TeX]
+\thesistitle{An Example Thesis Made With \LaTeX\ for Astronomy Students}
+\thesisauthor{A Hopeful Graduate}
+\thesisyear{2026}
+\thesisdegrees{%
+  B.Sc., University of WhoKnowsWhere, 2053\\
+  M.Sc., University of AnotherOne, 2054%
+}
+\end{lstlisting}
+
+\begin{description}
+    \item[Title.] The UVic Library catalogue displays symbols and Greek letters correctly, but you may write them out in words instead (``alpha'' rather than $\alpha$).
+    \item[Name.] Use your legal name. UVic requires the name to be identical at the top and bottom of the title page; the class prints the same \cmd{thesisauthor} in both places, and on the committee page.
+    \item[Previous credentials.] Optional. List one credential per line with the awarding institution and year, formatted consistently. Delete \cmd{thesisdegrees} to show none.
+    \item[Degree and department.] Set by the \texttt{degree} class option, and ``in the Department of Physics and Astronomy''. Students in joint programs can change the department line with \cmd{thesisdepartment}\texttt{\{Departments of \ldots\}}.
+    \item[Copyright.] The standard UVic statement (``All rights reserved\ldots'') is printed by default. To release your thesis under a Creative Commons licence instead, replace it with \cmd{thesiscopyright}:
+\begin{lstlisting}[language=TeX]
+\thesiscopyright{This work is licensed under a Creative Commons
+  Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)}
+\end{lstlisting}
+    \item[Territory acknowledgement.] UVic's official acknowledgement is printed at the bottom of the title page. UVic permits no variations to it, so it cannot be changed from \file{thesis.tex}.
+\end{description}
+
+\section{Supervisory Committee}
+\label{sec:committee}
+
+The committee page repeats your title, name and credentials, then lists your supervisory committee. Add one \cmd{panelist} per member, giving their name with title, their role, and their department:
+\begin{lstlisting}[language=TeX]
+\thesiscommittee{%
+  \panelist{Dr. R.\ Supervisor Main}{Supervisor}{Department of Physics and Astronomy}%
+  \panelist{Dr. Outside Member}{Outside Member}{Department of Chemistry}%
+}
+\end{lstlisting}
+The committee must match your student record; contact the graduate secretary if you are unsure who is on it. If a member holds both a UVic and an external appointment, list the UVic one. A member with no UVic department may be listed with their outside affiliation. Do \emph{not} list your external examiner or the exam chair: they are part of your examining committee, not your supervisory committee.
+
+\section{Abstract}
+\label{sec:abstract}
+
+The abstract states the problem, the method of investigation, and the general conclusions. UVic does not set a length, but recommends about 250 words. Your abstract is published through UVicSpace and Theses Canada, and indexed by Google Scholar and other search engines, so it is often the most widely read part of your thesis.
+
+\section{Table of Contents and Lists}
+\label{sec:toc}
+
+The table of contents lists every preliminary page (including itself), every chapter and section, the bibliography, and the appendices; all of this is automatic. The List of Tables and List of Figures each start on their own page and use the same format as the table of contents. Each entry shows the caption of the table or figure. If a caption is long, give a shorter version for the list in square brackets:
+\begin{lstlisting}[language=TeX]
+\caption[Short title for the list]{Full caption, which can run to several sentences.}
+\end{lstlisting}
+UVic only requires a list if the thesis contains tables or figures. If yours has none, set \texttt{listoftables=false} or \texttt{listoffigures=false}.
+
+\section{Acknowledgements and Dedication}
+\label{sec:acknowledgements}
+
+Both pages are optional. The acknowledgements are the place to thank people and organizations who funded you, gave you research opportunities, or helped in other ways; the dedication can hold a dedication, a quotation or similar. If you include both, the acknowledgements come first. To leave either page out, delete its file from \file{frontmatter/}.
+
+\section{Heading Styles}
+\label{sec:heading-styles}
+
+UVic does not prescribe how the headings of the preliminary pages should look, only that they are consistent: every list must have an appropriate heading and be formatted like the others. The class keeps them consistent for you. The headings of the Abstract, Table of Contents, List of Tables, List of Figures, Acknowledgements and Dedication all use the same font, alignment and position on the page, and the \texttt{headings} class option chooses their alignment for all of them at once (Figure~\ref{fig:heading-styles}):
+\begin{lstlisting}[language=TeX]
+\documentclass[headings=left]{uvicphysastro}       % the default
+\documentclass[headings=centered]{uvicphysastro}   % or headings=centred
+\end{lstlisting}
+
+\begin{figure}[htbp]
+    \centering
+    \newcommand{\headingexample}[1]{%
+        \fbox{\parbox[t]{0.42\linewidth}{\vspace{0.5ex}#1{\large\bfseries Abstract}#1\null\par
+            \vspace{1ex}\footnotesize\noindent The abstract of your thesis or dissertation states the problem, the method of investigation, and the general conclusions\ldots\vspace{0.5ex}}}}
+    \headingexample{\relax}\hfill\headingexample{\hfill}
+    \caption[The two preliminary-page heading styles]{The two preliminary-page heading styles: \texttt{headings=left} (left) and \texttt{headings=centered} (right).}
+    \label{fig:heading-styles}
+\end{figure}
+
+The option only affects the preliminary pages. Chapter headings are always centred, and the ``Supervisory Committee'' label on the committee page stays left-aligned, as in UVic's sample pages.
+
+The abstract, acknowledgements and dedication files each begin with \cmd{prelimheading}, which starts a new page, adds the page to the table of contents, and prints the heading in the chosen style:
+\begin{lstlisting}[language=TeX]
+\prelimheading{Abstract}
+\end{lstlisting}
+If you add another preliminary page, such as a glossary or a list of abbreviations, start it with \cmd{prelimheading} too, so that its heading matches the others.
