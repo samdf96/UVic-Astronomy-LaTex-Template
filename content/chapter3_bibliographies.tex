@@ -44,6 +44,16 @@ A style file kept in \file{extras/} must be named with its folder, as above; a s
 
 \texttt{natbib} provides two main citation commands: \cmd{citet} for a citation in the running text, such as \citet{Hubble1929}, and \cmd{citep} for a parenthetical citation, such as \citep{Hubble1929}.
 
+\subsection{Numbered Citations}
+\label{sec:bib-numbered}
+
+Physics journals usually cite by number, as in ``[3, 7--9]'', rather than by author and year. With \texttt{natbib}, this needs two package options: \texttt{numbers}, and \texttt{sort\&compress}, which sorts the numbers in each citation and shortens runs such as 7, 8, 9 to 7--9. The class loads \texttt{natbib} itself, so pass the options on the first line of \file{thesis.tex}, before \cmd{documentclass} (Section~\ref{sec:packages}):
+\begin{lstlisting}[language=TeX]
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\documentclass[bibliography=natbib]{uvicphysastro}
+\end{lstlisting}
+Then cite with \cmd{citep} or \cmd{cite}. Combine this with a numbered style such as the APS style (Section~\ref{sec:bib-aps}). Do not also load the \texttt{cite} package, which older documents often use for the same purpose: \texttt{natbib} already sorts and compresses numbered citations, and warns that \texttt{cite} should not be used with it.
+
 \subsection{biblatex}
 
 With \texttt{bibliography=biblatex}, the class loads \texttt{biblatex} with the \texttt{biber} backend, in the style given by the \texttt{bibstyle} class option (\texttt{authoryear} by default). Name your \file{.bib} file in the preamble, and print the bibliography where it should appear:
@@ -64,7 +74,7 @@ UVic does not prescribe a citation or bibliography style; follow the style guide
 
 \subsection{Styles Included With the Template}
 
-The \file{extras/} folder contains the styles of two major astronomy journals (Table~\ref{tab:bib-styles}). Both are distributed under the \LaTeX\ Project Public License and are included unchanged. They are also part of every full \TeX\ installation (including Overleaf), so \cmd{bibliographystyle}\texttt{\{mnras\}} works even without the copy in \file{extras/}; the copies make sure that you use the versions this template was tested with.
+The \file{extras/} folder contains the styles of two major astronomy journals and of the American Physical Society journals (Table~\ref{tab:bib-styles}). All three are distributed under the \LaTeX\ Project Public License. The AAS and MNRAS styles are included unchanged, and are also part of every full \TeX\ installation (including Overleaf), so \cmd{bibliographystyle}\texttt{\{mnras\}} works even without the copy in \file{extras/}; the copies make sure that you use the versions this template was tested with. The APS style is a corrected copy (Section~\ref{sec:bib-aps}).
 
 \begin{table}[htbp]
     \centering
@@ -76,6 +86,7 @@ The \file{extras/} folder contains the styles of two major astronomy journals (T
         \midrule
         AAS journals (ApJ, ApJL, ApJS, AJ, PSJ) & \cmd{bibliographystyle}\texttt{\{extras/aasjournal\}} & June 2019 (AASTeX 6.3) \\
         MNRAS & \cmd{bibliographystyle}\texttt{\{extras/mnras\}} & v3.2, July 2023 \\
+        APS journals (Phys.\ Rev.\ A--E, PRL, \ldots) & \cmd{bibliographystyle}\texttt{\{extras/apsrev4-2-fixed\}} & REVTeX 4.2f, corrected \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -83,6 +94,21 @@ The \file{extras/} folder contains the styles of two major astronomy journals (T
 The AAS style is deliberately the 2019 version. AAS distributes a newer \file{aasjournalv7.bst} with AASTeX~7, but it is written for the AASTeX~7 document class: used with any other class, it adds first initials to in-text citations (``E. Hubble (1929)'') and leaves stray spaces and commas in the citations and reference list.
 
 To switch styles, change the \cmd{bibliographystyle} line and compile again; \texttt{latexmk} and Overleaf rerun BibTeX automatically.
+
+\subsection{Physics Journals (APS)}
+\label{sec:bib-aps}
+
+The \emph{Physical Review} journals of the American Physical Society use the style \file{apsrev4-2.bst} from REVTeX, which is common in theoretical physics. It numbers the references, so use it with numbered citations (Section~\ref{sec:bib-numbered}):
+\begin{lstlisting}[language=TeX]
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\documentclass[bibliography=natbib]{uvicphysastro}
+...
+\bibliographystyle{extras/apsrev4-2-fixed}
+\bibliography{references}
+\end{lstlisting}
+The first line passes the \texttt{numbers} and \texttt{sort\&compress} options to \texttt{natbib}: it must come before \cmd{documentclass}, because the class loads \texttt{natbib} itself.
+
+The file is a corrected copy of \file{apsrev4-2.bst}, hence the name \file{-fixed} (the \LaTeX\ Project Public License requires a modified file to be renamed). Outside the REVTeX document class, the original style leaves a stray space before the final full stop of every reference with an arXiv number, as in ``arXiv:1807.06209 [astro-ph.CO]~.''; the copy removes that space and changes nothing else. The change is described at the top of the file.
 
 \subsection{Other Styles}
 

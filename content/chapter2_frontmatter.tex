@@ -17,6 +17,7 @@ The preliminary pages (or front matter) are everything before Chapter~1. UVic is
         Table of Contents & Yes & Generated \\
         List of Tables & If you have tables & Generated; \texttt{listoftables=false} omits it \\
         List of Figures & If you have figures & Generated; \texttt{listoffigures=false} omits it \\
+        Abbreviations, symbols, \ldots & If you use them & \file{frontmatter/abbreviations.tex}; delete the file to omit it \\
         Acknowledgements & No & \file{frontmatter/acknowledgements.tex}; delete the file to omit it \\
         Dedication & No & \file{frontmatter/dedications.tex}; delete the file to omit it \\
         \bottomrule
@@ -80,6 +81,30 @@ The table of contents lists every preliminary page (including itself), every cha
 \caption[Short title for the list]{Full caption, which can run to several sentences.}
 \end{lstlisting}
 UVic only requires a list if the thesis contains tables or figures. If yours has none, set \texttt{listoftables=false} or \texttt{listoffigures=false}.
+
+\section{Lists of Abbreviations, Acronyms and Symbols}
+\label{sec:abbreviations}
+
+UVic treats a glossary or a list of abbreviations, acronyms or symbols like the other lists: it is a preliminary page with its own heading, listed in the table of contents. Put such a list in \file{frontmatter/abbreviations.tex}; \cmd{makefrontmatter} includes it right after the List of Figures, and leaves it out if the file does not exist. Start the file with \cmd{prelimheading}, so that its heading matches the other preliminary pages. The List of Abbreviations of this document comes from:
+\begin{lstlisting}[language=TeX]
+\prelimheading{List of Abbreviations}
+
+\noindent
+\begin{tabular}{@{}l l@{}}
+    ADS  & NASA Astrophysics Data System \\
+    UVic & University of Victoria \\
+\end{tabular}
+\end{lstlisting}
+For a list that is built automatically from the abbreviations you actually use, load the \texttt{acronym} package in \file{thesis.tex} and replace the table with its \texttt{acronym} environment:
+\begin{lstlisting}[language=TeX]
+\prelimheading{List of Acronyms}
+
+\begin{acronym}[WIMP]
+    \acro{CMB}{Cosmic Microwave Background}
+    \acro{WIMP}{Weakly Interacting Massive Particle}
+\end{acronym}
+\end{lstlisting}
+In the text, \cmd{ac}\texttt{\{CMB\}} then writes ``Cosmic Microwave Background (CMB)'' the first time and ``CMB'' afterwards. A list of several kinds (for example, symbols and acronyms) can go in the same file, each starting with its own \cmd{prelimheading}.
 
 \section{Acknowledgements and Dedication}
 \label{sec:acknowledgements}

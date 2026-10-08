@@ -1,16 +1,17 @@
 % uvicphysastro.cls
 % Custom LaTeX class for University of Victoria Physics and Astronomy theses
 % October 2026, Samuel Fielder samuelfielder (at) uvic.ca
-% Version 1.0
+% Version 1.1
 
 % Thanks to Caleb Miller for the originally implemented thesis templates, and
-% Jaclyn Jensen and Eleanore Todd for their contributions in testing and feedback.
+% Jaclyn Jensen, Eleanore Todd, and Branden Aitken for their contributions in
+% testing and feedback.
 
 % -------------------------------------------------------------------
 % Class Declaration
 % -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{uvicphysastro}[2026-10-01 v1.0 UVic Physics and Astronomy Thesis Class]
+\ProvidesClass{uvicphysastro}[2026-10-01 v1.1 UVic Physics and Astronomy Thesis Class]
 
 % -------------------------------------------------------------------
 % Class Options (key=value style)
@@ -256,8 +257,12 @@
 % Latin Modern fonts contain.
 \ifPDFTeX
   \RequirePackage[safe]{tipa}
-  \newcommand\uvic@schwa{\textschwa}
-  \newcommand\uvic@eng{\textipa{\ng}}
+  % tipa's fonts exist only for Computer Modern (cmr), so take the two
+  % characters from cmr explicitly. Otherwise a document that switches
+  % fonts (e.g. \usepackage{lmodern}) gets a "Font shape T3/lmr/m/n
+  % undefined" warning and the same cmr characters by substitution.
+  \newcommand\uvic@schwa{{\fontfamily{cmr}\selectfont\textschwa}}
+  \newcommand\uvic@eng{{\fontfamily{cmr}\selectfont\textipa{\ng}}}
 \else
   \newcommand\uvic@schwa{\char"0259\relax}
   \newcommand\uvic@eng{\char"014B\relax}
@@ -594,6 +599,9 @@
 % Call this right after \begin{document}. It produces all preliminary
 % pages, in UVic's required order, from the thesis details and from
 % the files: frontmatter/abstract.tex          (required)
+%                   frontmatter/abbreviations.tex     (optional; create it to add
+%                                                      a list of abbreviations,
+%                                                      acronyms, symbols, ...)
 %                   frontmatter/acknowledgements.tex  (optional; delete to omit)
 %                   frontmatter/dedications.tex       (optional; delete to omit)
 % -------------------------------------------------------------------
@@ -689,6 +697,10 @@
     \renewcommand{\listfigurename}{List of Figures}%
     \TOCadd{List of Figures}\listoffigures
   \fi
+  %
+  % Further lists (abbreviations, acronyms, symbols, glossary) are optional
+  % and come after the List of Figures; included only if the file exists
+  \IfFileExists{frontmatter/abbreviations.tex}{\input{frontmatter/abbreviations}}{}%
   %
   % Acknowledgements and dedication are optional (UVic): delete the file
   % to leave the page out

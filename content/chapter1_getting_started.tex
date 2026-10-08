@@ -18,7 +18,7 @@ The template follows the checklist and sample pages as last updated on 7 October
 
 \begin{description}
     \item[\file{thesis.tex}] The main file, and the only top-level \file{.tex} file you edit. It holds your class options, your thesis details, any extra packages, and the list of chapters.
-    \item[\file{frontmatter/}] Your abstract, acknowledgements and dedication. All other preliminary pages are generated for you.
+    \item[\file{frontmatter/}] Your abstract, list of abbreviations, acknowledgements and dedication. All other preliminary pages are generated for you.
     \item[\file{content/}] One file per chapter and appendix. Images go in \file{content/figures/}. The \file{content/examples/} folder holds the table code shown in this document, and can be deleted.
     \item[\file{references.bib}] Your bibliography database.
     \item[\file{uvicphysastro.cls}] The document class. You should not need to edit it.
@@ -31,7 +31,7 @@ The template follows the checklist and sample pages as last updated on 7 October
 \begin{enumerate}
     \item Download or clone the repository from \url{https://github.com/samdf96/UVic-Astronomy-LaTex-Template}, or upload all of its files to a new Overleaf project.
     \item In \file{thesis.tex}, set your class options (Section~\ref{sec:class-options}) and fill in your thesis details: \cmd{thesistitle}, \cmd{thesisauthor}, \cmd{thesisyear}, \cmd{thesisdegrees} and \cmd{thesiscommittee}.
-    \item Write your abstract in \file{frontmatter/abstract.tex}, and edit (or delete) \file{frontmatter/acknowledgements.tex} and \file{frontmatter/dedications.tex}.
+    \item Write your abstract in \file{frontmatter/abstract.tex}, and edit (or delete) \file{frontmatter/abbreviations.tex}, \file{frontmatter/acknowledgements.tex} and \file{frontmatter/dedications.tex}.
     \item Replace the example chapters in \file{content/} with your own, and update the \cmd{include} lines in \file{thesis.tex} to match.
     \item Compile (Section~\ref{sec:compiling}).
 \end{enumerate}
@@ -68,12 +68,72 @@ Any option you leave out takes its default value. Values are not case sensitive,
 
 The page margins are 1~inch on all sides (with extra room at the top for the page number); UVic does not prescribe margins, so if you or your committee prefer a wider left margin, add a line such as \cmd{geometry}\texttt{\{left=1.5in\}} to the preamble of \file{thesis.tex}.
 
+\section{Packages: What the Class Loads and What to Add}
+\label{sec:packages}
+
+The class loads every package that the thesis format itself depends on, together with a few general tools, so a thesis compiles without any \cmd{usepackage} lines of your own. Table~\ref{tab:class-packages} lists them. You do not need to load these again; if an older preamble of yours does, the repeated lines are harmless, as long as they do not ask for different options (see below).
+
+\begin{table}[htbp]
+    \centering
+    \caption{Packages loaded by the class.}
+    \label{tab:class-packages}
+    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.27\linewidth} >{\raggedright\arraybackslash}X@{}}
+        \toprule
+        Purpose & Packages \\
+        \midrule
+        Page layout & \texttt{geometry}, \texttt{setspace}, \texttt{fancyhdr}, \texttt{sectsty}, \texttt{tocloft} \\
+        Mathematics & \texttt{amsmath}, \texttt{amsthm}, \texttt{amssymb} \\
+        Figures and captions & \texttt{graphicx}, \texttt{caption}, \texttt{subcaption}, \texttt{adjustbox}, \texttt{pdfpages} \\
+        Cross-references and links & \texttt{hyperref}, \texttt{varioref}, \texttt{url}, \texttt{xurl}, \texttt{notoccite} \\
+        Bibliography & \texttt{natbib} or \texttt{biblatex}, depending on the \texttt{bibliography} option \\
+        Symbols, colour and text & \texttt{wasysym}, \texttt{tipa}, \texttt{xcolor}, \texttt{xspace}, \texttt{verbatim} \\
+        Draft mode only & \texttt{lineno}, \texttt{showkeys}, \texttt{changebar}, \texttt{datetime2}, \texttt{todonotes} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Anything else is up to you. Table~\ref{tab:optional-packages} lists packages that are often useful in physics and astronomy theses; none of them is required.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Optional packages that are often useful.}
+    \label{tab:optional-packages}
+    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.38\linewidth} >{\raggedright\arraybackslash}X@{}}
+        \toprule
+        Package & Use \\
+        \midrule
+        \texttt{booktabs}, \texttt{multirow}, \texttt{xltabular}, \texttt{threeparttablex}, \texttt{pdflscape} & Tables (Chapter~\ref{ch:tables}); loaded in \file{thesis.tex} for the examples in this document \\
+        \texttt{siunitx} & Numbers and units, e.g.\ \cmd{SI}\texttt{\{3.0e8\}\{m/s\}} \\
+        \texttt{physics}, \texttt{slashed}, \texttt{esvect} & Physics notation: derivatives, bra--ket notation, Feynman slash, vector arrows \\
+        \texttt{cleveref} & References that name what they point to, e.g.\ \cmd{cref}\texttt{\{fig:x\}} gives ``Figure 2.1'' \\
+        \texttt{acronym}, \texttt{glossaries} & Lists of acronyms or symbols (Section~\ref{sec:abbreviations}) \\
+        \texttt{listings} & Program code; used for the code examples in this document \\
+        \texttt{fontspec} & Choosing fonts, with Lua\LaTeX\ only (Section~\ref{sec:engines}) \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{Where to Load Packages}
+
+Load your own packages in \file{thesis.tex}, in the block headed ``Your own packages and settings'', after the \cmd{documentclass} line. A few rules cover almost every case:
+\begin{itemize}
+    \item \textbf{Settings for packages the class loads go after \cmd{documentclass}}, in the same block. For example, \cmd{hypersetup}\texttt{\{hidelinks\}} makes all links black, and \cmd{captionsetup}\texttt{\{...\}} changes the caption style.
+    \item \textbf{Options for packages the class loads go before \cmd{documentclass}.} Loading such a package again with different options stops compilation with an ``Option clash'' error. Instead, pass the options with \cmd{PassOptionsToPackage} on the very first line of \file{thesis.tex}; the class then loads the package with them. Numbered citations with \texttt{natbib} are the most common case (Section~\ref{sec:bib-numbered}):
+\begin{lstlisting}[language=TeX]
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\documentclass[bibliography=natbib]{uvicphysastro}
+\end{lstlisting}
+    \item \textbf{Your packages are loaded after \texttt{hyperref}}, because the class loads it. This is the order most packages expect, and some require it: \texttt{cleveref}, for example, must come after \texttt{hyperref}, which is automatically the case here.
+\end{itemize}
+
 \section{Compiling Your Thesis}
 \label{sec:compiling}
 
+The template was tested with \TeX\ Live 2026 (\LaTeX\ 2026-06-01; pdf\TeX\ 1.40.29, Lua\-HB\TeX\ 1.24.0, Xe\TeX\ 0.999998), using all three engines described in Section~\ref{sec:engines}. Older versions of \TeX\ Live should also work (most of the template was also tested with \TeX\ Live 2022), but only \TeX\ Live 2026 was tested in full.
+
 \subsection{On Overleaf}
 
-Upload every file in the repository to a new project, keeping the folder structure. In the project menu, set the main document to \file{thesis.tex} and the compiler to pdf\LaTeX\ (or Lua\LaTeX; see Section~\ref{sec:engines}). Overleaf runs the bibliography program and repeats the compilation as needed automatically.
+Upload every file in the repository to a new project, keeping the folder structure. In the project menu, set the main document to \file{thesis.tex} and the compiler to pdf\LaTeX\ (or Lua\LaTeX; see Section~\ref{sec:engines}). Overleaf runs the bibliography program and repeats the compilation as needed automatically. Also set the \TeX\ Live version, under \emph{Menu}~$\rightarrow$ \emph{Settings}~$\rightarrow$ \emph{\TeX\ Live version}, to 2026 or the newest version offered, so that your thesis is compiled with the version this template was tested with.
 
 \subsection{On Your Own Computer}
 

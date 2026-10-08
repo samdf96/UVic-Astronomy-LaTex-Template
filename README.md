@@ -27,11 +27,15 @@ The template is a single document class, `uvicphysastro`, that produces the prel
    }
    ```
 
-3. Write your abstract in `frontmatter/abstract.tex`, and edit (or delete) `frontmatter/acknowledgements.tex` and `frontmatter/dedications.tex`.
+3. Write your abstract in `frontmatter/abstract.tex`, and edit (or delete) `frontmatter/abbreviations.tex`, `frontmatter/acknowledgements.tex` and `frontmatter/dedications.tex`.
 4. Replace the example chapters in `content/` with your own, and update the `\include` lines in `thesis.tex`.
 5. Compile with pdfLaTeX (the Overleaf default). Locally, `latexmk -pdf thesis.tex` runs LaTeX and BibTeX as many times as needed. LuaLaTeX is also fully supported.
 
 All class options are listed in Chapter 1 of `thesis.pdf` and at the top of `uvicphysastro.cls`.
+
+## Tested with
+
+The template was tested with **TeX Live 2026** (LaTeX 2026-06-01; pdfTeX 1.40.29, LuaHBTeX 1.24.0, XeTeX 0.999998), using pdfLaTeX, LuaLaTeX and XeLaTeX. On Overleaf, set the TeX Live version to 2026, or the newest version offered, under *Menu → Settings → TeX Live version*. Older TeX Live versions should also work (most of the template was also tested with TeX Live 2022), but only TeX Live 2026 was tested in full.
 
 ## Repository layout
 
@@ -39,10 +43,10 @@ All class options are listed in Chapter 1 of `thesis.pdf` and at the top of `uvi
 | --- | --- |
 | `thesis.tex` | The main file: class options, thesis details, extra packages, and the list of chapters. |
 | `uvicphysastro.cls` | The document class. You should not need to edit it. |
-| `frontmatter/` | Your abstract, acknowledgements and dedication. All other preliminary pages are generated. |
+| `frontmatter/` | Your abstract, list of abbreviations, acknowledgements and dedication. All other preliminary pages are generated. |
 | `content/` | One file per chapter. Images go in `content/figures/`; `content/examples/` holds the table code shown in the example PDF and can be deleted. |
 | `references.bib` | Your bibliography database. |
-| `extras/` | Bibliography styles of the AAS journals (`aasjournal.bst`) and MNRAS (`mnras.bst`). |
+| `extras/` | Bibliography styles of the AAS journals (`aasjournal.bst`), MNRAS (`mnras.bst`) and the APS journals (`apsrev4-2-fixed.bst`). |
 | `thesis.pdf` | The compiled example thesis. |
 
 ## Before you submit
@@ -59,4 +63,8 @@ This template began as a modification of the [PAGSA UVic LaTeX Thesis Template](
 
 ## Licence
 
-The template is released under the [MIT License](LICENSE). The bibliography styles in `extras/` are included unchanged and keep their own licence, the [LaTeX Project Public License](https://www.latex-project.org/lppl/): `aasjournal.bst` is part of [AASTeX](https://ctan.org/pkg/aastex) (American Astronomical Society) and `mnras.bst` is part of the [MNRAS class](https://ctan.org/pkg/mnras) (Royal Astronomical Society).
+The template is released under the [MIT License](LICENSE). The bibliography styles in `extras/` keep their own licence, the [LaTeX Project Public License](https://www.latex-project.org/lppl/):
+
+- `aasjournal.bst` is part of [AASTeX](https://ctan.org/pkg/aastex) (American Astronomical Society), included unchanged.
+- `mnras.bst` is part of the [MNRAS class](https://ctan.org/pkg/mnras) (Royal Astronomical Society), included unchanged.
+- `apsrev4-2-fixed.bst` is a corrected copy of `apsrev4-2.bst` from [REVTeX](https://ctan.org/pkg/revtex) (American Physical Society), renamed as the licence requires. It removes a stray space before the full stop of references with an arXiv number; the change is described at the top of the file.
