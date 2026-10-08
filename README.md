@@ -59,7 +59,7 @@ UVic's formatting requirements are in the [thesis format checklist and sample pa
 
 ## Credits
 
-This template began as a modification of the [PAGSA UVic LaTeX Thesis Template](https://github.com/PAGSA/UVic-latex-thesis-template), compiled by Caleb Miller, and was rewritten as a document class by Samuel Fielder in 2026. Thanks to Jaclyn Jensen and Eleanore Todd for testing it with their theses and for their feedback.
+This template began as a modification of the [PAGSA UVic LaTeX Thesis Template](https://github.com/PAGSA/UVic-latex-thesis-template), compiled by Caleb Miller, and was rewritten as a document class by Samuel Fielder in 2026. Thanks to Jaclyn Jensen, Eleanore Todd and Branden Aitken for testing it with their theses and for their feedback.
 
 ## Licence
 
